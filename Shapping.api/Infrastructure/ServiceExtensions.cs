@@ -59,7 +59,23 @@ namespace Shapping.api.Infrastructure
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
+                config.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                {
+                   new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                    Name = "Bearer",
+                },
+                    new List<string>()
+                }
+                });
             });
         }
     }
 }
+

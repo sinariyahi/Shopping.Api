@@ -23,7 +23,7 @@ namespace Shapping.api.Services
             },
             new User
             {
-                Id = 2, FirstName = "Nima", LastName = "Riyahi", Username = "User", Password = "1234",
+                Id = 2, FirstName = "Nima", LastName = "Riyahi", Username = "regularUser", Password = "1234",
                 Role = "User"
             }
         };

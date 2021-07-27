@@ -34,7 +34,7 @@ namespace Shapping.api.Controllers
             return User;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,User")]
         [HttpGet("all")]
         public IEnumerable<User> GetAllUser()
         {
