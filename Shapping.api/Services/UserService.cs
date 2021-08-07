@@ -12,19 +12,24 @@ using System.Threading.Tasks;
 
 namespace Shapping.api.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly List<User> _users = new List<User>
         {
             new User
             {
-                Id = 1, FirstName = "Sina", LastName = "Riyahi", Username = "admin", Password = "1234",
-                Role = "Admin"
+                Id = 1, FirstName = "Sina", LastName = "Riyahi", Username = "admin", Password = "0000",
+                AccessAllUser = true
             },
             new User
             {
-                Id = 2, FirstName = "Nima", LastName = "Riyahi", Username = "regularUser", Password = "1234",
-                Role = "User"
+                Id = 2, FirstName = "Nima", LastName = "Riyahi", Username = "User", Password = "1234",
+                AccessAllUser=false
+            },
+            new User
+            {
+                Id = 3 , FirstName = "Saman" , LastName = "Namnik" , Username = "Manager" , Password="1111",
+                AccessAllUser=true
             }
         };
         private readonly AppSettings _appSettings;
@@ -38,17 +43,17 @@ namespace Shapping.api.Services
         {
             var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
 
-           
+
             if (user == null)
                 return null;
 
-           
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var claims = new ClaimsIdentity();
             claims.AddClaims(new[]
             {
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim("AccessAllUser", user.AccessAllUser.ToString())
             });
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -60,7 +65,7 @@ namespace Shapping.api.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
 
-            
+
             user.Password = null;
 
             return user;
@@ -72,4 +77,3 @@ namespace Shapping.api.Services
         }
     }
 }
-   

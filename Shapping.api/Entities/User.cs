@@ -15,5 +15,6 @@ namespace Shapping.api.Entities
         public string Password { get; set; }
         public string Token { get; set; }
         public string Role { get; set; }
+        public bool AccessAllUser { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace Shapping.api.Controllers
             return Ok(_mapper.Map<IEnumerable<ItemDto>>(itemsForStoreFromRepo));
         }
 
-        [HttpGet("{ItemId}", Name = "GetItemForStore")]
+        [HttpGet("{itemId}", Name = "GetItemForStore")]
         public ActionResult<ItemDto> GetItemForStore(Guid storeId, Guid itemId)
         {
             if (!_storeItemRepository.StoreExists(storeId))
@@ -70,7 +70,7 @@ namespace Shapping.api.Controllers
                 new { storeId = storeId, itemId = itemToReturn.Id },
                 itemToReturn);
         }
-        [HttpDelete("{courseId}")]
+        [HttpDelete("{itemId}")]
         public ActionResult DeleteItemForStore(Guid storeId, Guid itemId)
         {
             if (!_storeItemRepository.StoreExists(storeId))

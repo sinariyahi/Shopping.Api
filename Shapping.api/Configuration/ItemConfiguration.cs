@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shapping.api.Configuration
 {
-    public class ItemConfiguration: IEntityTypeConfiguration<Item>
+    public class ItemConfiguration : IEntityTypeConfiguration<Item>
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {

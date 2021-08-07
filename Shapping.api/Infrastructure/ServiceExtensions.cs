@@ -24,6 +24,10 @@ namespace Shapping.api.Infrastructure
         public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services,
             AppSettings appSettings)
         {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("GetAllUser", policy => policy.RequireClaim("AccessAllUser", "True"));
+            });
 
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(options =>
