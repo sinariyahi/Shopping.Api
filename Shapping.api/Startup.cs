@@ -12,6 +12,8 @@ using Microsoft.OpenApi.Models;
 using Shapping.api.DbContexts;
 using Shapping.api.Infrastructure;
 using Shapping.api.Services;
+using Shapping.api.Services.GetItemList;
+using Shapping.api.Services.GetStoreList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +33,13 @@ namespace Shapping.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddControllers();
-           
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
-            
+
             var appSettings = appSettingsSection.Get<AppSettings>();
             services.AddAuthenticationConfiguration(appSettings);
 
@@ -45,10 +47,15 @@ namespace Shapping.api
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IStoreItemRepository, StoreItemRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGetItemListService, GetItemListService>();
+            services.AddScoped<IGetStoreListService, GetStoreListService>();
+            services.AddControllersWithViews()
+             .AddNewtonsoftJson(options =>
+               options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSwaggerConfiguration();
 
             services.AddAuthentication();
-            
+
 
             services.AddSwaggerGen(c =>
             {
@@ -62,7 +69,7 @@ namespace Shapping.api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-               
+
             }
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shapping.api v1"));

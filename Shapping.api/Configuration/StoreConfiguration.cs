@@ -20,8 +20,8 @@ namespace Shapping.api.Configuration
                      Name = "Farhad",
                      City = "Tehran",
                      Address = "Azadi",
-                     Email="Farhadi25@gmail.com",
-                     Phone="09362322511"
+                     Email = "Farhadi25@gmail.com",
+                     Phone = "09362322511"
                  },
                 new Store()
                 {
@@ -29,8 +29,8 @@ namespace Shapping.api.Configuration
                     Name = "Nima",
                     City = "Amol",
                     Address = "Amam",
-                    Email="nima11@gmail.com",
-                    Phone="09306628281"
+                    Email = "nima11@gmail.com",
+                    Phone = "09306628281"
                 }
                 );
         }
