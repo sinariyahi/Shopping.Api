@@ -3,8 +3,10 @@ REST API design with ASP.NET Core WebAPI
 
 This project is an example of lightweight and extensible infrastructure for building RESTful Web API with ASP.NET Core.
 
+=========================================
 
 Testing it out
+
 =========================================
 
 1.Clone or download this repository
@@ -15,8 +17,10 @@ Testing it out
 
 4.Browse to this url https://localhost:44390/swagger to see SwaggerUI page
 
+========================================
 
 Techniques and Features
+
 ========================================
 
 . JWT Authentication
@@ -24,4 +28,25 @@ Techniques and Features
 . Secure Authentication using Role base
 
 . Secure Authentication using Claim base
+
+. Logging to File using NLog
+
+. Standard API Resulting
+
+. Dependency Injection
+
+. Map resources using AutoMapper
+
+. Using Swagger (Swashbuckle)
+
+. using Entity Framework Core (EF Core)
+
+==========================================
+
+Please give me a star
+
+==========================================
+
+If you like this project,Thanks ❤  
+
 
