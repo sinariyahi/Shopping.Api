@@ -8,8 +8,11 @@ Testing it out
 =========================================
 
 1.Clone or download this repository
+
 2.Build the solution using command line with dotnet build
+
 3.Go to Shopping.api directory and run project using command line with dotnet run
+
 4.Browse to this url https://localhost:44390/swagger to see SwaggerUI page
 
 
