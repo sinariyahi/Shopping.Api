@@ -20,5 +20,8 @@ Techniques and Features
 ========================================
 
 . JWT Authentication
+
 . Secure Authentication using Role base
+
 . Secure Authentication using Claim base
+
