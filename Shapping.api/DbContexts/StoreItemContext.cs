@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Shapping.api.Configuration;
 using Shapping.api.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Shapping.api.DbContexts
 {
@@ -18,9 +14,9 @@ namespace Shapping.api.DbContexts
         public DbSet<Item> Items { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.ApplyConfiguration(new StoreConfiguration());
-           modelBuilder.ApplyConfiguration(new ItemConfiguration());
-           base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new StoreConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

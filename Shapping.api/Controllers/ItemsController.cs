@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Shapping.api.DbContexts;
-using Shapping.api.Entities;
 using Shapping.api.Models;
 using Shapping.api.Services;
-using Shapping.api.Services.GetItemList;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Shapping.api.Controllers
 {
@@ -19,16 +13,13 @@ namespace Shapping.api.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly IStoreItemRepository _storeItemRepository;
-        private readonly IGetItemListService _getItemListService;
         private readonly IMapper _mapper;
-        private readonly StoreItemContext _context;
 
-        public ItemsController(IStoreItemRepository storeItemRepository, IMapper mapper, IGetItemListService getItemListService, StoreItemContext context)
+        public ItemsController(IStoreItemRepository storeItemRepository, IMapper mapper)
         {
             _storeItemRepository = storeItemRepository ?? throw new ArgumentNullException(nameof(storeItemRepository));
-            _getItemListService = getItemListService ?? throw new ArgumentNullException(nameof(getItemListService));
+
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         [HttpGet]
         public ActionResult<IEnumerable<ItemDto>> GetItemsForStore(Guid storeId)
@@ -98,30 +89,7 @@ namespace Shapping.api.Controllers
 
             return NoContent();
         }
-        [HttpGet("Test")]
-        public ActionResult<IEnumerable<Item>> Execute()
-        {
-            var items = _context.Items.Where(s => s.Name == "Cake")
-            .Include(s => s.Store)
-             .FirstOrDefault();
-            return Ok(items);
-        }
 
-
-        [HttpGet("TestId")]
-        public ActionResult<List<Item>> ExecuteId()
-        {
-            var items = _context.Items.Where(s => s.Name.Contains("Cake"))
-                .Select(s => new Item
-                {
-                    Store = s.Store,
-                    StoreId = s.StoreId,
-                    Name = s.Name,
-                    DateExpiration = s.DateExpiration,
-                    DateManufacture = s.DateManufacture
-                }).ToList();
-            return Ok(items);
-        }
     }
 }
 

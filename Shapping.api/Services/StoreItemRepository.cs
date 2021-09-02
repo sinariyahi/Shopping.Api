@@ -3,7 +3,6 @@ using Shapping.api.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shapping.api.Services
 {
@@ -30,7 +29,7 @@ namespace Shapping.api.Services
 
         public void AddStore(Store store)
         {
-          if(store==null)
+            if (store == null)
             {
                 throw new ArgumentNullException(nameof(store));
             }
@@ -51,15 +50,25 @@ namespace Shapping.api.Services
 
         public void DeleteStore(Store store)
         {
-            if(store==null)
+            if (store == null)
             {
                 throw new ArgumentNullException(nameof(store));
             }
             _context.Stores.Remove(store);
         }
 
+        public List<Store> Execute()
+        {
+            var stores = _context.Stores.Where(s => s.Name.Contains("a"))
+            .ToList();
+            return stores;
+        }
+
+
+
         public Item GetItem(Guid storeId, Guid itemId)
         {
+
             if (storeId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(storeId));
@@ -85,7 +94,7 @@ namespace Shapping.api.Services
 
         public Store GetStore(Guid storeId)
         {
-            if(storeId==Guid.Empty)
+            if (storeId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(storeId));
             }
@@ -111,7 +120,7 @@ namespace Shapping.api.Services
 
             return _context.Stores.Any(a => a.Id == storeId);
         }
-        
+
 
         public void UpdateItem(Item item)
         {

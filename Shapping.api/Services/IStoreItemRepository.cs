@@ -1,8 +1,6 @@
 ﻿using Shapping.api.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shapping.api.Services
 {
@@ -20,5 +18,6 @@ namespace Shapping.api.Services
         void DeleteStore(Store store);
         bool StoreExists(Guid storeId);
         bool Save();
+        List<Store> Execute();
     }
 }

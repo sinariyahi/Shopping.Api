@@ -7,11 +7,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Shapping.api.DbContexts;
 using Shapping.api.Entities;
+using Shapping.api.Services.LoggerService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Shapping.api.Infrastructure
 {
@@ -20,6 +20,8 @@ namespace Shapping.api.Infrastructure
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
             services.AddDbContext<StoreItemContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
 
+        public static void ConfigureLoggerService(this IServiceCollection services) =>
+            services.AddScoped<ILoggerManager, LoggerManager>();
 
         public static IServiceCollection AddAuthenticationConfiguration(this IServiceCollection services,
             AppSettings appSettings)

@@ -1,22 +1,16 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shapping.api.Entities;
 using Shapping.api.Models;
 using Shapping.api.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Shapping.api.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("api/authentication")]
-    public class authenticationController : ControllerBase 
+    public class authenticationController : ControllerBase
     {
         private readonly IUserService _userService;
 

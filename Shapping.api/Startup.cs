@@ -1,23 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Shapping.api.DbContexts;
+using NLog;
 using Shapping.api.Infrastructure;
 using Shapping.api.Services;
-using Shapping.api.Services.GetItemList;
-using Shapping.api.Services.GetStoreList;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Shapping.api
 {
@@ -25,6 +16,7 @@ namespace Shapping.api
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -44,11 +36,10 @@ namespace Shapping.api
             services.AddAuthenticationConfiguration(appSettings);
 
             services.ConfigureSqlContext(Configuration);
+            services.ConfigureLoggerService();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IStoreItemRepository, StoreItemRepository>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IGetItemListService, GetItemListService>();
-            services.AddScoped<IGetStoreListService, GetStoreListService>();
             services.AddControllersWithViews()
              .AddNewtonsoftJson(options =>
                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
