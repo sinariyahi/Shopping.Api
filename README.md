@@ -47,4 +47,4 @@ If you like this project,Thanks ❤
 Communication with the developer📭
 ===========================================
 
-Any suggestions, criticisms, comments and questions you can contact Sina Riyahi Telegram account [@Sina_Riyahi](http://www.t.me/sina_riyahi)
+Any suggestions, criticisms, comments and questions you can contact Sina Riyahi Telegram account [@Sina_Riyahi](https://www.t.me/sina_riyahi)
