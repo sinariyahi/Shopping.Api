@@ -9,7 +9,7 @@ namespace Shapping.api.Entities
         [Key]
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Please fill out")]
-        [MaxLength(100, ErrorMessage = "Maximum 100 characters")]
+        [MaxLength(200, ErrorMessage = "Maximum 200 characters")]
 
         public string Name { get; set; }
         [Required(ErrorMessage = "Please fill out")]
